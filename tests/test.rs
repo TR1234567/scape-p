@@ -4,6 +4,7 @@ use std::string::String;
 
 use dotenv::dotenv;
 use serde_json::Value;
+use tokio;
 
 #[tokio::main]
 async fn read_data() {
@@ -50,6 +51,32 @@ fn write_json_to_file(file_path: &str, data: &Value) -> std::io::Result<()> {
     file.write_all(json_str.as_bytes())?;
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_read_data() {
+        // You can write test cases for your read_data function here
+        // For example, you can use a mock HTTP server or simulate different API responses
+        // and test how your function handles them.
+    }
+
+    #[test]
+    fn test_string_to_static_str() {
+        let s = String::from("hello");
+        let static_str = string_to_static_str(s);
+        assert_eq!(static_str, "hello");
+    }
+
+    #[test]
+    fn test_write_json_to_file() {
+        // You can write test cases for your write_json_to_file function here
+        // For example, you can create a temporary file, write JSON data to it,
+        // and then read the file to verify its contents.
+    }
 }
 
 fn main() {
